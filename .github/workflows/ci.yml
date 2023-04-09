@@ -37,8 +37,14 @@ jobs:
       - name: check out codebase
         uses: actions/checkout@v3
 
-      - name: lint code
+      - name: install dependencies
+        run: pip install ansible-lint
+
+      - name: lint using yamllint
         run: yamllint .
+
+      - name: lint using ansible-lint
+        run: ansible-lint .
 
   test:
     needs: [lint]
