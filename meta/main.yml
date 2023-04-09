@@ -3,23 +3,21 @@ galaxy_info:
   author: trfore
   namespace: trfore
   description: Compile the Apache Commons Daemon, aka jsvc, binary on RedHat/CentOS and Debian/Ubuntu.
-  license: 'license (MIT)'
-  min_ansible_version: 2.4
+
+  license: MIT
+
+  min_ansible_version: '2.14'
+
   platforms:
-    - name: Centos
-      versions:
-        - Stream 8
     - name: Debian
-      versions:
-        - 10
-        - 11
+      versions: [buster, bullseye]
+    - name: EL
+      versions: ['8']
     - name: Ubuntu
-      versions:
-        - 20.04
-        - 22.04
+      versions: [focal, jammy]
+
   galaxy_tags:
     - apache
-    - commons daemon
     - java
     - jsvc
     - system
