@@ -1,0 +1,3 @@
+---
+jsvc_build_jdk:
+  - openjdk-11-jdk-headless

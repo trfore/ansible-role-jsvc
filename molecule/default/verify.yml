@@ -1,0 +1,21 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - ../../defaults/main.yml
+  tasks:
+    - name: Test jsvc binary calling `-help` and pulling version
+      ansible.builtin.shell: |
+        set -o pipefail
+        jsvc -home $(realpath /usr/bin/java | sed 's:/\(jre/bin\|bin\)/java::') -help | grep 'jsvc (Apache Commons Daemon)'
+      args:
+        executable: /bin/bash
+      register: jsvc_version
+
+    - name: Assert jsvc version matches source code
+      ansible.builtin.assert:
+        that: exe_ver == src_ver
+      vars:
+        exe_ver: '{{ jsvc_version.stdout | regex_search("\d\.\d\.\d") }}'
+        src_ver: '{{ jsvc_src_version }}'

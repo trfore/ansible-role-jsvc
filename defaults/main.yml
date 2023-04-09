@@ -1,0 +1,12 @@
+---
+jsvc_src_version: '1.3.3'
+jsvc_tar_src: 'https://dlcdn.apache.org/commons/daemon/source/commons-daemon-{{ jsvc_src_version }}-native-src.tar.gz'
+jsvc_tar_src_remote: true
+jsvc_tar_dir: /var/tmp
+jsvc_tar_folder: '{{ jsvc_tar_src | basename | splitext | first | splitext | first }}'
+jsvc_build_dependencies:
+  - autoconf
+  - make
+  - gcc
+jsvc_remove_jdk: false
+jsvc_remove_tar_folder: false

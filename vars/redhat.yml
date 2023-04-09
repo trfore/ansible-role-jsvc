@@ -1,0 +1,3 @@
+---
+jsvc_build_jdk:
+  - java-11-openjdk-devel.x86_64
