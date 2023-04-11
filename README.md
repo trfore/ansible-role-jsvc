@@ -12,6 +12,22 @@ If you would like to manually download the source code to your Ansible control h
 - `jsvc_tar_src: commons-daemon-*.*.*-native-src.tar.gz`
 - `jsvc_tar_src_remote: false`
 
+### Installing this role
+
+You can install this role with the Ansible Galaxy CLI:
+
+```bash
+ansible-galaxy role install trfore.jsvc
+```
+
+You can also include it in a `requirements.yml` file and install it with `ansible-galaxy role install -r requirements.yml`, using the format:
+
+```yaml
+---
+roles:
+  - trfore.jsvc
+```
+
 ## Requirements
 
 None
@@ -47,7 +63,8 @@ None
 ```yaml
 - hosts: servers
   roles:
-    - { role: trfore.jsvc }
+    - name: Compile jsvc binary
+      role: trfore.jsvc
 ```
 
 - If you manually download the tar file & wish to remove the JDK and source dir.
@@ -60,7 +77,8 @@ None
     jsvc_remove_jdk: true
     jsvc_remove_tar_folder: true
   roles:
-    - { role: trfore.jsvc }
+    - name: Compile jsvc binary
+      role: trfore.jsvc
 ```
 
 ## License
