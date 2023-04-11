@@ -38,14 +38,14 @@ Available variables are listed below, along with default values (see `defaults/m
 
 | Variable                | Default                       | Description                                                                         | Required  |
 | ----------------------- | ----------------------------- | ----------------------------------------------------------------------------------- | --------- |
-| jsvc_src_version        | Latest Release, `1.x.x`       | Apache Commons' Daemon version                                                      | No        |
+| jsvc_src_version        | Latest Release, `1.x.x`       | Apache Commons' Daemon version                                                      | Yes       |
 | jsvc_tar_src            | URL                           | Apache Commons' Daemon **native** source tar file, URL or relative path             | Yes       |
 | jsvc_tar_src_remote     | `true`                        | Boolean, `true` if downloading from URL                                             | Yes       |
 | jsvc_tar_dir            | `/var/tmp`                    | Temporary directory on the target host for extracting and compiling the source code | Yes       |
 | jsvc_tar_folder         | Automatic                     | Determined from the `jsvc_tar_src` variable                                         | Automatic |
 | jsvc_build_dependencies | `["autoconf", "make", "gcc"]` | Packages for compiling the source code                                              | Yes       |
-| jsvc_remove_jdk         | `false`                       | Boolean, uninstall the Java JDK after build                                         | No        |
-| jsvc_remove_tar_folder  | `false`                       | Boolean, remove the source code temporary directory on the remote host              | No        |
+| jsvc_remove_jdk         | `false`                       | Boolean, uninstall the Java JDK after build                                         | Yes       |
+| jsvc_remove_tar_folder  | `false`                       | Boolean, remove the source code temporary directory on the remote host              | Yes       |
 
 OS specific variables are listed below, along with default values (see `vars/debian.yml` and `vars/redhat.yml`):
 
