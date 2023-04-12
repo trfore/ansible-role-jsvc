@@ -12,7 +12,7 @@ If you would like to manually download the source code to your Ansible control h
 - `jsvc_tar_src: commons-daemon-*.*.*-native-src.tar.gz`
 - `jsvc_tar_src_remote: false`
 
-### Installing this role
+### Install the Role
 
 You can install this role with the Ansible Galaxy CLI:
 
