@@ -1,0 +1,29 @@
+name: update jsvc version
+on:
+  schedule:
+    - cron:  '0 10 * * *'
+jobs:
+  update_jsvc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out codebase
+        uses: actions/checkout@v3
+      
+      - name: get latest jsvc release
+        id: jsvc_release
+        run: |
+          release_tag=$(curl -X GET  https://api.github.com/repos/apache/commons-daemon/tags | jq -S '[.[] | select(.name|match("^commons-daemon-1.[0-9].[0-9]$"))][0] | (.name | capture("(?<ver>[0-9].[0-9].[0-9])")).ver')
+          echo "release_tag=$release_tag" >> $GITHUB_OUTPUT
+          current_tag=$(<jsvc.version)
+          echo "current_tag=$current_tag" >> $GITHUB_OUTPUT
+
+      - name: update jsvc
+        if: steps.jsvc_release.outputs.current_tag != steps.jsvc_release.outputs.release_tag
+        env:
+          RELEASE_TAG: ${{ steps.jsvc_release.outputs.release_tag }}
+        run: |          
+          # update default vars and readme
+          sed -i "s/[0-9].[0-9].[0-9]/$RELEASE_TAG/" /defaults/main.yml README.md
+
+          # update current release
+          echo ${{ steps.jsvc_release.outputs.release_tag }} > jsvc.version

@@ -1,7 +1,7 @@
-name: cd
+name: CD
 on:
   workflow_run:
-    workflows: ['ci']
+    workflows: ['CI']
     branches: [main]
     types: [completed]
 

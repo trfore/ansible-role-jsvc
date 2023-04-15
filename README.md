@@ -1,7 +1,7 @@
 # Ansible Role: jsvc
 
-[![ci](https://github.com/trfore/ansible-role-jsvc/workflows/ci/badge.svg?branch=main&event=push)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml)
-[![cd](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml)
+[![CI](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml)
+[![CD](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml)
 
 Compile the Apache Commons Daemon, aka `jsvc`, on RedHat/CentOS, Debian/Ubuntu servers.
 
@@ -38,7 +38,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
 | Variable                | Default                       | Description                                                                         | Required  |
 | ----------------------- | ----------------------------- | ----------------------------------------------------------------------------------- | --------- |
-| jsvc_src_version        | Latest Release, `1.x.x`       | Apache Commons' Daemon version                                                      | Yes       |
+| jsvc_src_version        | `1.3.3`                       | Apache Commons' Daemon latest release                                               | Yes       |
 | jsvc_tar_src            | URL                           | Apache Commons' Daemon **native** source tar file, URL or relative path             | Yes       |
 | jsvc_tar_src_remote     | `true`                        | Boolean, `true` if downloading from URL                                             | Yes       |
 | jsvc_tar_dir            | `/var/tmp`                    | Temporary directory on the target host for extracting and compiling the source code | Yes       |

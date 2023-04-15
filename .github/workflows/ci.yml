@@ -1,4 +1,4 @@
-name: ci
+name: CI
 on:
   workflow_dispatch:
   push:
@@ -15,6 +15,7 @@ on:
       - 'tasks/**'
       - 'vars/**'
       - '.yamllint'
+      - 'jsvc.version'
   pull_request:
     branches:
       - main
@@ -29,6 +30,7 @@ on:
       - 'tasks/**'
       - 'vars/**'
       - '.yamllint'
+      - 'jsvc.version'
 
 jobs:
   lint:
