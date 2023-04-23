@@ -2,14 +2,9 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
-      - '.github/workflows/ci.yml'
-      - '.github/workflows/release.yml'
       - 'defaults/**'
-      - 'files/**'
-      - 'handlers/**'
       - 'meta/**'
       - 'molecule/**'
       - 'tasks/**'
@@ -17,14 +12,9 @@ on:
       - '.yamllint'
       - 'jsvc.version'
   pull_request:
-    branches:
-      - main
+    branches: ['*']
     paths:
-      - '.github/workflows/ci.yml'
-      - '.github/workflows/release.yml'
       - 'defaults/**'
-      - 'files/**'
-      - 'handlers/**'
       - 'meta/**'
       - 'molecule/**'
       - 'tasks/**'
