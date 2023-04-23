@@ -4,23 +4,16 @@ on:
   push:
     branches: [main]
     paths:
-      - 'defaults/**'
-      - 'meta/**'
-      - 'molecule/**'
-      - 'tasks/**'
-      - 'vars/**'
-      - '.yamllint'
-      - 'jsvc.version'
+      - "defaults/**"
+      - "meta/**"
+      - "molecule/**"
+      - "tasks/**"
+      - "vars/**"
+      - ".yamllint"
+      - "jsvc.version"
   pull_request:
-    branches: ['*']
-    paths:
-      - 'defaults/**'
-      - 'meta/**'
-      - 'molecule/**'
-      - 'tasks/**'
-      - 'vars/**'
-      - '.yamllint'
-      - 'jsvc.version'
+    branches: ["*"]
+    paths: ["*"]
 
 jobs:
   lint:
@@ -52,7 +45,7 @@ jobs:
       - name: setup python 3
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: install dependencies
         run: pip install -r requirements.txt
@@ -60,9 +53,9 @@ jobs:
       - name: run molecule test
         run: molecule test
         env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-          # MOLECULE_COMMAND: ''
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+          # MOLECULE_COMMAND: ""
           MOLECULE_IMAGE: trfore/docker-${{ matrix.distro }}-systemd
           MOLECULE_NAME: ${{ matrix.distro }}
-          # MOLECULE_PLAYBOOK: ''
+          # MOLECULE_PLAYBOOK: ""
