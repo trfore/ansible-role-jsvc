@@ -1,8 +1,7 @@
 name: CD
 on:
   workflow_run:
-    workflows: ['CI']
-    branches: [main]
+    workflows: ["CI"]
     types: [completed]
 
 jobs:
@@ -16,7 +15,7 @@ jobs:
       - name: setup python 3
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: install dependencies
         run: pip install -r requirements.txt
