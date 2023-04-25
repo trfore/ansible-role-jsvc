@@ -1,61 +1,28 @@
 name: CI
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "defaults/**"
-      - "meta/**"
-      - "molecule/**"
-      - "tasks/**"
-      - "vars/**"
-      - ".yamllint"
-      - "jsvc.version"
   pull_request:
     branches: ["*"]
-    paths: ["*"]
+    types: [opened]
+    paths-ignore:
+      - "LICENSE"
+      - "README.md"
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: check out codebase
-        uses: actions/checkout@v3
+  lint_ansible:
+    uses: trfore/ansible-role/.github/workflows/lint_ansible.yml@main
 
-      - name: install dependencies
-        run: pip install ansible-lint
-
-      - name: lint using yamllint
-        run: yamllint .
-
-      - name: lint using ansible-lint
-        run: ansible-lint .
-
-  test:
-    needs: [lint]
-    runs-on: ubuntu-latest
+  molecule_test:
+    needs:
+      - lint_ansible
     strategy:
       fail-fast: false
       matrix:
         distro: [centos8, debian10, debian11, ubuntu2004, ubuntu2204]
-    steps:
-      - name: check out codebase
-        uses: actions/checkout@v3
-
-      - name: setup python 3
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      - name: install dependencies
-        run: pip install -r requirements.txt
-
-      - name: run molecule test
-        run: molecule test
-        env:
-          PY_COLORS: "1"
-          ANSIBLE_FORCE_COLOR: "1"
-          # MOLECULE_COMMAND: ""
-          MOLECULE_IMAGE: trfore/docker-${{ matrix.distro }}-systemd
-          MOLECULE_NAME: ${{ matrix.distro }}
-          # MOLECULE_PLAYBOOK: ""
+        experimental: [false]
+        molecule_scenario: ["-s default"]
+    uses: trfore/ansible-role/.github/workflows/test_ansible.yml@main
+    with:
+      distro: ${{ matrix.distro }}
+      experimental: ${{ matrix.experimental }}
+      molecule_scenario: ${{ matrix.molecule_scenario }}
