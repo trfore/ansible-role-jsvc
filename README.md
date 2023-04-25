@@ -1,6 +1,6 @@
 # Ansible Role: jsvc
 
-[![CI](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml)
+[![CI](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml)
 [![CD](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml)
 
 Compile the Apache Commons Daemon, aka `jsvc`, on RedHat/CentOS, Debian/Ubuntu servers.
