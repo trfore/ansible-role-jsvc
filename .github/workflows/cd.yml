@@ -1,6 +1,12 @@
 name: CD
 on:
   workflow_dispatch:
+    inputs:
+      manual_deploy:
+        description: "deploy to ansible galaxy"
+        default: false
+        required: true
+        type: boolean
   pull_request:
     branches: [main]
     types: [closed]
