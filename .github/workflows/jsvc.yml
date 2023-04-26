@@ -24,7 +24,7 @@ jobs:
           RELEASE_TAG: ${{ steps.jsvc_release.outputs.release_tag }}
         run: |
           # update default vars and readme
-          sed -i "s/[0-9].[0-9].[0-9]/$RELEASE_TAG/" /defaults/main.yml README.md
+          sed -i "s/[0-9].[0-9].[0-9]/$RELEASE_TAG/" ./defaults/main.yml README.md
 
           # update 'jsvc.version' file
           echo ${{ steps.jsvc_release.outputs.release_tag }} > jsvc.version
