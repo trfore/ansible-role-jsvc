@@ -1,16 +1,16 @@
-name: update jsvc version
+name: Update jsvc Version
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '0 2 1 * *'
+    - cron: "0 2 1 * *"
 jobs:
   update_dependencies:
     runs-on: ubuntu-latest
     steps:
-      - name: check out codebase
+      - name: Check out codebase
         uses: actions/checkout@v3
-      
-      - name: get latest jsvc release
+
+      - name: Get latest jsvc release
         id: jsvc_release
         run: |
           release_tag=$(curl -X GET  https://api.github.com/repos/apache/commons-daemon/tags | jq -S '[.[] | select(.name|match("^commons-daemon-1.[0-9].[0-9]$"))][0] | (.name | capture("(?<ver>[0-9].[0-9].[0-9])")).ver')
@@ -18,18 +18,18 @@ jobs:
           current_tag=$(<jsvc.version)
           echo "current_tag=$current_tag" >> $GITHUB_OUTPUT
 
-      - name: update jsvc
+      - name: Update 'jsvc.version' file
         if: steps.jsvc_release.outputs.current_tag != steps.jsvc_release.outputs.release_tag
         env:
           RELEASE_TAG: ${{ steps.jsvc_release.outputs.release_tag }}
-        run: |          
+        run: |
           # update default vars and readme
           sed -i "s/[0-9].[0-9].[0-9]/$RELEASE_TAG/" /defaults/main.yml README.md
 
-          # update current release
+          # update 'jsvc.version' file
           echo ${{ steps.jsvc_release.outputs.release_tag }} > jsvc.version
-          
-      - name: create pull request
+
+      - name: Create pull request
         if: steps.jsvc_release.outputs.current_tag != steps.jsvc_release.outputs.release_tag
         uses: peter-evans/create-pull-request@v5
         with:
@@ -42,5 +42,5 @@ jobs:
 
             [1]: https://github.com/apache/commons-daemon
             [2]: https://github.com/peter-evans/create-pull-request
-          labels: dependencies, automated pr
-          branch: main
+          labels: dependencies, status/auto-created
+          branch: update-jsvc-ver
