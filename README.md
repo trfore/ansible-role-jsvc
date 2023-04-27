@@ -20,7 +20,7 @@ You can install this role with the Ansible Galaxy CLI:
 ansible-galaxy role install trfore.jsvc
 ```
 
-You can also include it in a `requirements.yml` file and install it with `ansible-galaxy role install -r requirements.yml`, using the format:
+You can also include it in a `requirements.yml` file and install it with `ansible-galaxy install -r requirements.yml`, using the format:
 
 ```yaml
 ---
@@ -38,21 +38,21 @@ Available variables are listed below, along with default values (see `defaults/m
 
 | Variable                | Default                       | Description                                                                         | Required  |
 | ----------------------- | ----------------------------- | ----------------------------------------------------------------------------------- | --------- |
-| jsvc_src_version        | `1.3.3`                       | Apache Commons' Daemon latest release                                               | Yes       |
-| jsvc_tar_src            | URL                           | Apache Commons' Daemon **native** source tar file, URL or relative path             | Yes       |
-| jsvc_tar_src_remote     | `true`                        | Boolean, `true` if downloading from URL                                             | Yes       |
-| jsvc_tar_dir            | `/var/tmp`                    | Temporary directory on the target host for extracting and compiling the source code | Yes       |
+| jsvc_src_version        | `1.3.3`                       | Apache Commons' Daemon latest release                                               | No        |
+| jsvc_tar_src            | URL                           | Apache Commons' Daemon **native** source tar file, URL or relative path             | No        |
+| jsvc_tar_src_remote     | `true`                        | Boolean, `true` if downloading from URL                                             | No        |
+| jsvc_tar_dir            | `/var/tmp`                    | Temporary directory on the target host for extracting and compiling the source code | No        |
 | jsvc_tar_folder         | Automatic                     | Determined from the `jsvc_tar_src` variable                                         | Automatic |
-| jsvc_build_dependencies | `["autoconf", "make", "gcc"]` | Packages for compiling the source code                                              | Yes       |
-| jsvc_remove_jdk         | `false`                       | Boolean, uninstall the Java JDK after build                                         | Yes       |
-| jsvc_remove_tar_folder  | `false`                       | Boolean, remove the source code temporary directory on the remote host              | Yes       |
+| jsvc_build_dependencies | `["autoconf", "make", "gcc"]` | Packages for compiling the source code                                              | No        |
+| jsvc_remove_jdk         | `false`                       | Boolean, uninstall the Java JDK after build                                         | No        |
+| jsvc_remove_tar_folder  | `false`                       | Boolean, remove the source code temporary directory on the remote host              | No        |
 
 OS specific variables are listed below, along with default values (see `vars/debian.yml` and `vars/redhat.yml`):
 
 | Variable       | Default                        | Description       | Required |
 | -------------- | ------------------------------ | ----------------- | -------- |
-| jsvc_build_jdk | `openjdk-11-jdk-headless`      | Java JDK (Debian) | Yes      |
-| jsvc_build_jdk | `java-11-openjdk-devel.x86_64` | Java JDK (RHEL)   | Yes      |
+| jsvc_build_jdk | `openjdk-11-jdk-headless`      | Java JDK (Debian) | No       |
+| jsvc_build_jdk | `java-11-openjdk-devel.x86_64` | Java JDK (RHEL)   | No       |
 
 ## Dependencies
 
@@ -62,6 +62,7 @@ None
 
 ```yaml
 - hosts: servers
+  become: true
   roles:
     - name: Compile jsvc binary
       role: trfore.jsvc
@@ -71,6 +72,7 @@ None
 
 ```yaml
 - hosts: servers
+  become: true
   vars:
     jsvc_tar_src: commons-daemon-1.3.3-native-src.tar.gz
     jsvc_tar_src_remote: false
@@ -87,7 +89,7 @@ MIT
 
 ## Author Information
 
-[Taylor Fore](https://github.com/trfore)
+Taylor Fore (https://github.com/trfore)
 
 ## References
 
