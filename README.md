@@ -91,6 +91,15 @@ MIT
 
 Taylor Fore (https://github.com/trfore)
 
+## Related Roles & Playbooks
+
+| Github                         | Ansible Galaxy           |
+| ------------------------------ | ------------------------ |
+| [ansible-role-jsvc]            | [trfore.jsvc]            |
+| [ansible-role-mongodb-install] | [trfore.mongodb_install] |
+| [ansible-role-omada-install]   | [trfore.omada_install]   |
+| [ansible-playbook-omada]       |                          |
+
 ## References
 
 ### Apache Commons Daemon / jsvc
@@ -98,3 +107,11 @@ Taylor Fore (https://github.com/trfore)
 - https://commons.apache.org/proper/commons-daemon/jsvc.html
 - https://dlcdn.apache.org/commons/daemon/source/
 - https://github.com/apache/commons-daemon
+
+[ansible-role-jsvc]: https://github.com/trfore/ansible-role-jsvc
+[trfore.jsvc]: https://galaxy.ansible.com/trfore/jsvc
+[ansible-role-mongodb-install]: https://github.com/trfore/ansible-role-mongodb-install
+[trfore.mongodb_install]: https://galaxy.ansible.com/trfore/mongodb_install
+[ansible-playbook-omada]: https://github.com/trfore/ansible-playbook-omada
+[ansible-role-omada-install]: https://github.com/trfore/ansible-role-omada-install
+[trfore.omada_install]: https://galaxy.ansible.com/trfore/omada_install
