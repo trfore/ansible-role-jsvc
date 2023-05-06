@@ -1,0 +1,5 @@
+---
+repository:
+  description: Ansible role for compiling Apache Commons Daemon, jsvc, on RedHat/CentOS and Debian/Ubuntu
+  homepage: https://galaxy.ansible.com/trfore/jsvc
+  topics: ansible-role, homelab, jsvc, apache-commons-daemon
