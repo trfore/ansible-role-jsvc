@@ -13,7 +13,7 @@ jobs:
       - name: Get latest jsvc release
         id: jsvc_release
         run: |
-          release_tag=$(curl -X GET  https://api.github.com/repos/apache/commons-daemon/tags | jq -S '[.[] | select(.name|match("^commons-daemon-1.[0-9].[0-9]$"))][0] | (.name | capture("(?<ver>[0-9].[0-9].[0-9])")).ver')
+          release_tag=$(curl -X GET  https://api.github.com/repos/apache/commons-daemon/tags | jq -rS '[.[] | select(.name|match("^commons-daemon-1.[0-9].[0-9]$"))][0] | (.name | capture("(?<ver>[0-9].[0-9].[0-9])")).ver')
           echo "release_tag=$release_tag" >> $GITHUB_OUTPUT
           current_tag=$(<jsvc.version)
           echo "current_tag=$current_tag" >> $GITHUB_OUTPUT
