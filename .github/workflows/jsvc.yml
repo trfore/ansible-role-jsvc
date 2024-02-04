@@ -31,7 +31,7 @@ jobs:
 
       - name: Create pull request
         if: steps.jsvc_release.outputs.current_tag != steps.jsvc_release.outputs.release_tag
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           commit-message: update jsvc to ${{ steps.jsvc_release.outputs.release_tag }}
           title: update jsvc to ${{ steps.jsvc_release.outputs.release_tag }}
