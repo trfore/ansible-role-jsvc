@@ -1,14 +1,14 @@
 - name: Install essential packages
-  ansible.builtin.include_tasks: '{{ ansible_os_family | lower }}.yml'
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   when: ansible_os_family == 'Debian'
 
 - name: Install jsvc build dependencies
   ansible.builtin.package:
-    name: '{{ jsvc_build_dep }}'
+    name: "{{ jsvc_build_dep }}"
     state: present
   loop:
-    - '{{ jsvc_build_dependencies }}'
-    - '{{ jsvc_build_jdk }}'
+    - "{{ jsvc_build_dependencies }}"
+    - "{{ jsvc_build_jdk }}"
   loop_control:
     loop_var: jsvc_build_dep
   register: package_status
@@ -18,16 +18,16 @@
 
 - name: Create a temporary directory for jsvc source code
   ansible.builtin.file:
-    path: '{{ jsvc_tar_dir }}/{{ jsvc_tar_folder }}'
+    path: "{{ jsvc_tar_dir }}/{{ jsvc_tar_folder }}"
     state: directory
-    mode: '0775'
+    mode: "0775"
   register: jsvc_temp_dir
 
 - name: Download and extract jsvc source code
   ansible.builtin.unarchive:
-    src: '{{ jsvc_tar_src }}'
-    dest: '{{ jsvc_temp_dir.path }}'
-    remote_src: '{{ jsvc_tar_src_remote }}'
+    src: "{{ jsvc_tar_src }}"
+    dest: "{{ jsvc_temp_dir.path }}"
+    remote_src: "{{ jsvc_tar_src_remote }}"
     extra_opts:
       - --strip-components=1
   register: jsvc_src_code
@@ -42,7 +42,7 @@
     ./configure --with-java=$(realpath /usr/bin/java | sed 's:/\(jre/bin\|bin\)/java::')
     make
   args:
-    chdir: '{{ jsvc_src_code.dest }}/unix/'
+    chdir: "{{ jsvc_src_code.dest }}/unix/"
     creates: jsvc
     executable: /bin/bash
   register: jsvc_binary
@@ -51,15 +51,15 @@
   become: true
   ansible.builtin.copy:
     remote_src: true
-    src: '{{ jsvc_src_code.dest }}/unix/jsvc'
+    src: "{{ jsvc_src_code.dest }}/unix/jsvc"
     dest: /usr/bin
     owner: root
     group: root
-    mode: '0755'
+    mode: "0755"
 
 - name: Remove the jsvc source code directory
   ansible.builtin.file:
-    path: '{{ jsvc_src_code.dest }}'
+    path: "{{ jsvc_src_code.dest }}"
     state: absent
   when: jsvc_remove_jdk
 
@@ -68,10 +68,10 @@
 # selectively remove JDK, as other dependencies exist prior
 - name: Remove jsvc build dependencies
   ansible.builtin.package:
-    name: '{{ jsvc_build_dep }}'
+    name: "{{ jsvc_build_dep }}"
     state: absent
   loop:
-    - '{{ jsvc_build_jdk }}'
+    - "{{ jsvc_build_jdk }}"
   loop_control:
     loop_var: jsvc_build_dep
   when: jsvc_remove_tar_folder
