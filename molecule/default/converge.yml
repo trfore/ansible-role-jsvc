@@ -10,6 +10,6 @@
       changed_when: false
 
   tasks:
-    - name: 'Include ansible-role-jsvc'
-      include_role:
-        name: 'ansible-role-jsvc'
+    - name: "Include ansible-role-jsvc"
+      ansible.builtin.include_role:
+        name: "ansible-role-jsvc"

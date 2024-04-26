@@ -12,10 +12,11 @@
       args:
         executable: /bin/bash
       register: jsvc_version
+      changed_when: jsvc_version.rc != 0
 
     - name: Assert jsvc version matches source code
       ansible.builtin.assert:
         that: exe_ver == src_ver
       vars:
         exe_ver: '{{ jsvc_version.stdout | regex_search("\d\.\d\.\d") }}'
-        src_ver: '{{ jsvc_src_version }}'
+        src_ver: "{{ jsvc_src_version }}"
