@@ -2,9 +2,6 @@
   ansible.builtin.include_tasks: '{{ ansible_os_family | lower }}.yml'
   when: ansible_os_family == 'Debian'
 
-- name: Add OS specific variables
-  ansible.builtin.include_vars: '{{ ansible_os_family | lower }}.yml'
-
 - name: Install jsvc build dependencies
   ansible.builtin.package:
     name: '{{ jsvc_build_dep }}'

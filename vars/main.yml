@@ -1,0 +1,2 @@
+---
+jsvc_build_jdk: "{{ 'java-11-openjdk-devel.x86_64' if ansible_os_family == 'RedHat' else 'openjdk-11-jdk-headless' }}"
