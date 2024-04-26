@@ -28,6 +28,13 @@ roles:
   - trfore.jsvc
 ```
 
+## Tested Platforms
+
+- `ansible-core` 2.15 & 2.16
+- CentOS Stream 8 & 9
+- Debian 10 & 11
+- Ubuntu 20.04, 22.04 & 24.04
+
 ## Requirements
 
 None
@@ -45,9 +52,9 @@ Available variables are listed below, along with default values (see `defaults/m
 | jsvc_tar_folder         | Automatic                     | Determined from the `jsvc_tar_src` variable                                         | Automatic |
 | jsvc_build_dependencies | `["autoconf", "make", "gcc"]` | Packages for compiling the source code                                              | No        |
 | jsvc_remove_jdk         | `false`                       | Boolean, uninstall the Java JDK after build                                         | No        |
-| jsvc_remove_tar_folder  | `false`                       | Boolean, remove the source code temporary directory on the remote host              | No        |
+| jsvc_remove_tar_folder  | `false`                       | Boolean, remove the source code temporary directory on the target host              | No        |
 
-OS specific variables are listed below, along with default values (see `vars/debian.yml` and `vars/redhat.yml`):
+OS specific variables are listed below, along with default values (see `vars/main.yml`):
 
 | Variable       | Default                        | Description       | Required |
 | -------------- | ------------------------------ | ----------------- | -------- |
@@ -98,7 +105,6 @@ Taylor Fore (https://github.com/trfore)
 | [ansible-role-jsvc]            | [trfore.jsvc]            |
 | [ansible-role-mongodb-install] | [trfore.mongodb_install] |
 | [ansible-role-omada-install]   | [trfore.omada_install]   |
-| [ansible-playbook-omada]       |                          |
 
 ## References
 
@@ -112,6 +118,5 @@ Taylor Fore (https://github.com/trfore)
 [trfore.jsvc]: https://galaxy.ansible.com/trfore/jsvc
 [ansible-role-mongodb-install]: https://github.com/trfore/ansible-role-mongodb-install
 [trfore.mongodb_install]: https://galaxy.ansible.com/trfore/mongodb_install
-[ansible-playbook-omada]: https://github.com/trfore/ansible-playbook-omada
 [ansible-role-omada-install]: https://github.com/trfore/ansible-role-omada-install
 [trfore.omada_install]: https://galaxy.ansible.com/trfore/omada_install
