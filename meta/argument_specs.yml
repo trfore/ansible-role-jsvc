@@ -5,8 +5,9 @@ argument_specs:
     short_description: Compile the Apache Commons Daemon
     description:
       - Compile the Apache Commons Daemon, aka `jsvc`, on RedHat/CentOS, Debian/Ubuntu.
-      - This role downloads and compiles the latest source code from Apache Commons, e.g. https://dlcdn.apache.org/commons/daemon/source/, and copies the binary
-        to `/usr/bin/`. Optionally it will remove the JDK and source code directory.
+      - This role downloads and compiles the latest source code from Apache Commons, e.g.
+        https://dlcdn.apache.org/commons/daemon/source/, and copies the binary to `/usr/bin/`. Optionally it will
+        remove the JDK and source code directory.
     options:
       jsvc_src_version:
         type: "str"
