@@ -4,11 +4,10 @@
     manager: auto
 
 - name: Check for jsvc Binary
-  ansible.builtin.command: which jsvc
+  ansible.builtin.shell: command -v jsvc
   ignore_errors: true
   register: jsvc_binary
-  changed_when: jsvc_binary.rc
-  tags: jsvc
+  changed_when: jsvc_binary.rc !=0
 
 - name: Compile jsvc on Remote Host
   ansible.builtin.include_tasks: compile-jsvc.yml
