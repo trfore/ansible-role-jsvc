@@ -1,18 +1,17 @@
 ---
-- name: Gather the package facts
+- name: Gather Package Facts
   ansible.builtin.package_facts:
     manager: auto
 
-- name: Check for jsvc binary
+- name: Check for jsvc Binary
   ansible.builtin.command: which jsvc
   ignore_errors: true
   register: jsvc_binary
   changed_when: jsvc_binary.rc
   tags: jsvc
 
-- name: Compile jsvc on remote host when missing
+- name: Compile jsvc on Remote Host
   ansible.builtin.include_tasks: compile-jsvc.yml
   when:
     - "'jsvc' not in ansible_facts.packages"
     - jsvc_binary.rc != 0
-  tags: jsvc
