@@ -8,15 +8,6 @@
     recurse: true
   when: ansible_os_family == 'Debian' and ansible_virtualization_type in ['docker', 'container', 'containerd']
 
-- name: Install Essential Packages for HTTPS (Debian & Ubuntu)
-  ansible.builtin.apt:
-    update_cache: yes
-    name:
-      - gnupg
-      - ca-certificates
-    state: present
-  when: ansible_os_family == 'Debian'
-
 - name: Install jsvc Build Dependencies
   ansible.builtin.package:
     name: "{{ jsvc_build_dep }}"
