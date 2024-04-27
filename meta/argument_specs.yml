@@ -1,0 +1,43 @@
+# roles/jsvc/meta/argument_specs.yml
+---
+argument_specs:
+  compile-jsvc:
+    short_description: Compile the Apache Commons Daemon
+    description:
+      - Compile the Apache Commons Daemon, aka `jsvc`, on RedHat/CentOS, Debian/Ubuntu.
+      - This role downloads and compiles the latest source code from Apache Commons, e.g. https://dlcdn.apache.org/commons/daemon/source/, and copies the binary
+        to `/usr/bin/`. Optionally it will remove the JDK and source code directory.
+    options:
+      jsvc_src_version:
+        type: "str"
+        description: "Apache Commons' Daemon latest release."
+
+      jsvc_tar_src:
+        type: "str"
+        default: "URL"
+        description: "Apache Commons' Daemon **native** source tar file, URL or relative path."
+
+      jsvc_tar_src_remote:
+        type: "bool"
+        default: true
+        description: "Set to `true` if downloading tar file from remote source."
+
+      jsvc_tar_dir:
+        type: "path"
+        default: "/var/tmp"
+        description: "Temporary directory on the target host for extracting and compiling the source code."
+
+      jsvc_build_dependencies:
+        type: "list"
+        default: ["autoconf", "make", "gcc"]
+        description: "Packages for compiling the source code."
+
+      jsvc_remove_jdk:
+        type: "bool"
+        default: false
+        description: "Uninstall the Java JDK after build."
+
+      jsvc_remove_tar_folder:
+        type: "bool"
+        default: false
+        description: "Remove the source code temporary directory on the target host."
