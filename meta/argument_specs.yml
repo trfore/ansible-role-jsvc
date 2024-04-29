@@ -1,7 +1,7 @@
 # roles/jsvc/meta/argument_specs.yml
 ---
 argument_specs:
-  compile-jsvc:
+  main:
     short_description: Compile the Apache Commons Daemon
     description:
       - Compile the Apache Commons Daemon, aka `jsvc`, on RedHat/CentOS, Debian/Ubuntu.

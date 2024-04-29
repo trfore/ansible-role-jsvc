@@ -10,7 +10,92 @@
   changed_when: jsvc_binary.rc !=0
 
 - name: Compile jsvc on Remote Host
-  ansible.builtin.include_tasks: compile-jsvc.yml
   when:
     - "'jsvc' not in ansible_facts.packages"
     - jsvc_binary.rc != 0
+  block:
+    # openjdk dep issue when installed in a container without man directory
+    # ref: https://github.com/geerlingguy/ansible-role-java/issues/64
+    # sol: https://github.com/geerlingguy/ansible-role-java/commit/ee7c12b13aa594dc747892860e563f45794e94d0
+    - name: Ensure 'man' Directory Exists (Debian & Ubuntu)
+      ansible.builtin.file:
+        path: /usr/share/man/man1
+        state: directory
+        recurse: true
+      when: ansible_os_family == 'Debian' and ansible_virtualization_type in ['docker', 'container', 'containerd']
+
+    - name: Install jsvc Build Dependencies
+      ansible.builtin.package:
+        name: "{{ jsvc_build_dep }}"
+        state: present
+      loop:
+        - "{{ jsvc_build_dependencies }}"
+        - "{{ jsvc_build_jdk }}"
+      loop_control:
+        loop_var: jsvc_build_dep
+      register: package_status
+      until: package_status is success
+      delay: 10
+      retries: 6
+
+    - name: Set Temporary Directory Path Variable
+      ansible.builtin.set_fact:
+        jsvc_temp_dir: "{{ jsvc_tar_dir }}/{{ jsvc_tar_folder }}"
+
+    - name: Create a Temporary Directory for jsvc Source Code
+      ansible.builtin.file:
+        path: "{{ jsvc_temp_dir }}"
+        state: directory
+        mode: "0775"
+
+    - name: Download and Extract jsvc Source Code
+      ansible.builtin.unarchive:
+        src: "{{ jsvc_tar_src }}"
+        dest: "{{ jsvc_temp_dir }}"
+        remote_src: "{{ jsvc_tar_src_remote }}"
+        extra_opts:
+          - --strip-components=1
+      register: jsvc_src_code
+
+    # Select the correct java path for the config file OR set JAVA_HOME
+    # $ export JAVA_HOME=$(realpath /usr/bin/java | sed 's:/\(jre/bin\|bin\)/java::')
+    - name: Build jsvc Binary
+      become: true
+      ansible.builtin.shell: |
+        set -o pipefail
+        sh support/buildconf.sh
+        ./configure --with-java=$(realpath /usr/bin/java | sed 's:/\(jre/bin\|bin\)/java::')
+        make
+      args:
+        chdir: "{{ jsvc_src_code.dest }}/unix/"
+        creates: jsvc
+        executable: /bin/bash
+
+    - name: Move jsvc Binary to /usr/bin
+      become: true
+      ansible.builtin.copy:
+        remote_src: true
+        src: "{{ jsvc_src_code.dest }}/unix/jsvc"
+        dest: /usr/bin
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Remove the jsvc Source Code Directory
+      ansible.builtin.file:
+        path: "{{ jsvc_temp_dir }}"
+        state: absent
+      when: jsvc_remove_tar_folder
+
+    # ubuntu has 'make' and 'gcc' installed, it does NOT have 'autoconf'
+    # centOS/RHEL does NOT have 'make', 'gcc' or 'autoconf' installed
+    # selectively remove JDK, as other dependencies exist prior
+    - name: Remove jsvc Build Dependencies
+      ansible.builtin.package:
+        name: "{{ jsvc_build_dep }}"
+        state: absent
+      loop:
+        - "{{ jsvc_build_jdk }}"
+      loop_control:
+        loop_var: jsvc_build_dep
+      when: jsvc_remove_jdk
