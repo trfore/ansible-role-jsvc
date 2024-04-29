@@ -33,6 +33,7 @@ jobs:
     with:
       distro: ${{ matrix.distro }}
       molecule_scenario: ${{ matrix.molecule_scenario }}
+      requirements_file: "requirements/dev-requirements.txt"
 
   check:
     needs:
