@@ -7,26 +7,27 @@ on:
       - "LICENSE"
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow}}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  format:
+    uses: trfore/ansible-role/.github/workflows/format.yml@main
+
   lint:
+    needs:
+      - format
     uses: trfore/ansible-role/.github/workflows/lint_ansible.yml@main
 
   test:
     needs:
+      - format
       - lint
     strategy:
       fail-fast: false
       matrix:
-        distro:
-          [
-            centos8,
-            centos9,
-            debian10,
-            debian11,
-            ubuntu2004,
-            ubuntu2204,
-            ubuntu2404,
-          ]
+        distro: [centos8, centos9, debian10, debian11, ubuntu2004, ubuntu2204, ubuntu2404]
         molecule_scenario: ["-s default"]
     uses: trfore/ansible-role/.github/workflows/test_ansible.yml@main
     with:
@@ -35,12 +36,14 @@ jobs:
 
   check:
     needs:
+      - format
       - lint
       - test
     runs-on: ubuntu-latest
     steps:
       - run: >-
           python -c "assert set([
+          '${{ needs.format.result }}',
           '${{ needs.lint.result }}',
           '${{ needs.test.result }}',
           ]) == {'success'}"
