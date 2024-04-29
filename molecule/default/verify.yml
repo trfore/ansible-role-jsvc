@@ -5,7 +5,18 @@
   vars_files:
     - ../../defaults/main.yml
   tasks:
-    - name: Test jsvc binary calling `-help` and pulling version
+    - name: Test | Get Binary File Info
+      ansible.builtin.stat:
+        path: /usr/bin/jsvc
+      register: file_info
+
+    - name: Test | Check jsvc Binary Exists
+      ansible.builtin.assert:
+        that:
+          - file_info.stat.exists
+        quiet: true
+
+    - name: Test | Pull jsvc Version
       ansible.builtin.shell: |
         set -o pipefail
         jsvc -home $(realpath /usr/bin/java | sed 's:/\(jre/bin\|bin\)/java::') -help | grep 'jsvc (Apache Commons Daemon)'
@@ -14,7 +25,7 @@
       register: jsvc_version
       changed_when: jsvc_version.rc != 0
 
-    - name: Assert jsvc version matches source code
+    - name: Test | Assert jsvc Version Matches Source Code
       ansible.builtin.assert:
         that: exe_ver == src_ver
       vars:
