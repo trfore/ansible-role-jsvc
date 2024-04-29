@@ -55,7 +55,6 @@
         remote_src: "{{ jsvc_tar_src_remote }}"
         extra_opts:
           - --strip-components=1
-      register: jsvc_src_code
 
     # Select the correct java path for the config file OR set JAVA_HOME
     # $ export JAVA_HOME=$(realpath /usr/bin/java | sed 's:/\(jre/bin\|bin\)/java::')
@@ -67,7 +66,7 @@
         ./configure --with-java=$(realpath /usr/bin/java | sed 's:/\(jre/bin\|bin\)/java::')
         make
       args:
-        chdir: "{{ jsvc_src_code.dest }}/unix/"
+        chdir: "{{ jsvc_temp_dir }}/unix/"
         creates: jsvc
         executable: /bin/bash
 
@@ -75,7 +74,7 @@
       become: true
       ansible.builtin.copy:
         remote_src: true
-        src: "{{ jsvc_src_code.dest }}/unix/jsvc"
+        src: "{{ jsvc_temp_dir }}/unix/jsvc"
         dest: /usr/bin
         owner: root
         group: root
