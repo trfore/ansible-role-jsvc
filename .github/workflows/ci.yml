@@ -36,6 +36,7 @@ jobs:
       requirements_file: "requirements/dev-requirements.txt"
 
   check:
+    if: ${{ always() }}
     needs:
       - format
       - lint
