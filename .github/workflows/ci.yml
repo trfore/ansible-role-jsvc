@@ -29,7 +29,7 @@ jobs:
       matrix:
         distro: [centos9, debian10, debian11, ubuntu2004, ubuntu2204, ubuntu2404]
         molecule_scenario: ["-s default"]
-        requirements_file: "requirements/dev-requirements.txt"
+        requirements_file: ["requirements/dev-requirements.txt"]
         include:
           - distro: centos8
             experimental: false
