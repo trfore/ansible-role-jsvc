@@ -34,8 +34,9 @@ roles:
 
 ## Tested Platforms
 
-- `ansible-core` 2.15 & 2.16
+- `ansible-core` 2.15, 2.16 & 2.17
 - CentOS Stream 8 & 9
+  - Note CentOS 8 defaults to python 3.6 and is not supported in ansible-core 2.17
 - Debian 10 & 11
 - Ubuntu 20.04, 22.04 & 24.04
 
