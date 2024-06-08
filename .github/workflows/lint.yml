@@ -19,12 +19,20 @@ jobs:
   format:
     uses: trfore/ansible-role/.github/workflows/format.yml@main
 
+  lint:
+    uses: DavidAnson/markdownlint-cli2-action@v16
+    with:
+      config: ".markdownlint.yaml"
+      globs: "**/*.md"
+
   check:
     needs:
       - format
+      - lint
     runs-on: ubuntu-latest
     steps:
       - run: >-
           python -c "assert set([
           '${{ needs.format.result }}',
+          '${{ needs.lint.result }}',
           ]) == {'success'}"

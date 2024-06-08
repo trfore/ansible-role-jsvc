@@ -3,16 +3,19 @@
 [![CI](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml)
 [![CD](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml)
 
-Compile the Apache Commons Daemon, aka `jsvc`, on RedHat/CentOS, Debian/Ubuntu servers.
+Compile the Apache Commons Daemon, aka `jsvc`, on RedHat/CentOS and Debian/Ubuntu.
 
-This role downloads and compiles the latest source code from Apache Commons, e.g. https://dlcdn.apache.org/commons/daemon/source/, and copies the binary to `/usr/bin/`. Optionally it will remove the JDK and source code directory.
+This role downloads and compiles the latest source code from [Apache Commons (link)](https://dlcdn.apache.org/commons/daemon/source/),
+and copies the binary to `/usr/bin/`. Optionally, it will remove the JDK and source code directory.
 
-If you would like to manually download the source code to your Ansible control host, download the **native-src**, `commons-daemon-*.*.*-native-src.tar.gz`, to your `files` directory and set the following two variables in your playbook:
+If you would like to manually download the source code to your Ansible control host, download the **native-src**,
+`commons-daemon-*.*.*-native-src.tar.gz`, to your `files` directory and set the following two variables in your
+playbook:
 
 - `jsvc_tar_src: commons-daemon-*.*.*-native-src.tar.gz`
 - `jsvc_tar_src_remote: false`
 
-### Install the Role
+## Install the Role
 
 You can install this role with the Ansible Galaxy CLI:
 
@@ -20,7 +23,8 @@ You can install this role with the Ansible Galaxy CLI:
 ansible-galaxy role install trfore.jsvc
 ```
 
-You can also include it in a `requirements.yml` file and install it with `ansible-galaxy install -r requirements.yml`, using the format:
+You can also include it in a `requirements.yml` file and install it with `ansible-galaxy install -r requirements.yml`,
+using the format:
 
 ```yaml
 ---
@@ -30,8 +34,9 @@ roles:
 
 ## Tested Platforms
 
-- `ansible-core` 2.15 & 2.16
+- `ansible-core` 2.15, 2.16 & 2.17
 - CentOS Stream 8 & 9
+  - Note CentOS 8 defaults to python 3.6 and is not supported in ansible-core 2.17
 - Debian 10 & 11
 - Ubuntu 20.04, 22.04 & 24.04
 
@@ -96,7 +101,7 @@ MIT
 
 ## Author Information
 
-Taylor Fore (https://github.com/trfore)
+Taylor Fore (<https://github.com/trfore>)
 
 ## Related Roles & Playbooks
 
@@ -110,9 +115,9 @@ Taylor Fore (https://github.com/trfore)
 
 ### Apache Commons Daemon / jsvc
 
-- https://commons.apache.org/proper/commons-daemon/jsvc.html
-- https://dlcdn.apache.org/commons/daemon/source/
-- https://github.com/apache/commons-daemon
+- <https://commons.apache.org/proper/commons-daemon/jsvc.html>
+- <https://dlcdn.apache.org/commons/daemon/source/>
+- <https://github.com/apache/commons-daemon>
 
 [ansible-role-jsvc]: https://github.com/trfore/ansible-role-jsvc
 [trfore.jsvc]: https://galaxy.ansible.com/trfore/jsvc
