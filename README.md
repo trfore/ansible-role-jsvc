@@ -50,7 +50,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
 | Variable                | Default                       | Description                                                                         | Required  |
 | ----------------------- | ----------------------------- | ----------------------------------------------------------------------------------- | --------- |
-| jsvc_src_version        | `1.4.0`                       | Apache Commons' Daemon latest release                                               | No        |
+| jsvc_src_version        | `1.4.1`                       | Apache Commons' Daemon latest release                                               | No        |
 | jsvc_tar_src            | URL                           | Apache Commons' Daemon **native** source tar file, URL or relative path             | No        |
 | jsvc_tar_src_remote     | `true`                        | Boolean, `true` if downloading from URL                                             | No        |
 | jsvc_tar_dir            | `/var/tmp`                    | Temporary directory on the target host for extracting and compiling the source code | No        |
@@ -86,7 +86,7 @@ None
 - hosts: servers
   become: true
   vars:
-    jsvc_tar_src: commons-daemon-1.4.0-native-src.tar.gz
+    jsvc_tar_src: commons-daemon-1.4.1-native-src.tar.gz
     jsvc_tar_src_remote: false
     jsvc_remove_jdk: true
     jsvc_remove_tar_folder: true
