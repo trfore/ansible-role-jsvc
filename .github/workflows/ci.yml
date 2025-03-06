@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distro: [centos9, debian10, debian11, ubuntu2004, ubuntu2204, ubuntu2404]
+        distro: [centos9, debian11, ubuntu2204, ubuntu2404]
         molecule_scenario: ["-s default"]
         requirements_file: ["requirements/dev-requirements.txt"]
     uses: trfore/ansible-role/.github/workflows/test_ansible.yml@main
