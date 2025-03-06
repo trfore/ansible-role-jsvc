@@ -69,6 +69,8 @@
         chdir: "{{ jsvc_temp_dir }}/unix/"
         creates: jsvc
         executable: /bin/bash
+      register: build_binary
+      failed_when: build_binary.rc == 1 or build_binary.rc > 2
 
     - name: Move jsvc Binary to /usr/bin
       become: true
