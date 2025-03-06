@@ -34,11 +34,11 @@ roles:
 
 ## Tested Platforms
 
-- `ansible-core` 2.15, 2.16 & 2.17
-- CentOS Stream 8 & 9
-  - Note CentOS 8 defaults to python 3.6 and is not supported in ansible-core 2.17
-- Debian 10 & 11
-- Ubuntu 20.04, 22.04 & 24.04
+- `ansible-core` 2.16, 2.17 & 2.18
+- `python` 3.10 & 3.11
+- CentOS Stream 9
+- Debian 11
+- Ubuntu 22.04 & 24.04
 
 ## Requirements
 
@@ -118,6 +118,7 @@ Taylor Fore (<https://github.com/trfore>)
 - <https://commons.apache.org/proper/commons-daemon/jsvc.html>
 - <https://dlcdn.apache.org/commons/daemon/source/>
 - <https://github.com/apache/commons-daemon>
+- [Apache JIRA: Commons-Daemon Issue Tracker]
 
 [ansible-role-jsvc]: https://github.com/trfore/ansible-role-jsvc
 [trfore.jsvc]: https://galaxy.ansible.com/trfore/jsvc
@@ -125,3 +126,4 @@ Taylor Fore (<https://github.com/trfore>)
 [trfore.mongodb_install]: https://galaxy.ansible.com/trfore/mongodb_install
 [ansible-role-omada-install]: https://github.com/trfore/ansible-role-omada-install
 [trfore.omada_install]: https://galaxy.ansible.com/trfore/omada_install
+[Apache JIRA: Commons-Daemon Issue Tracker]: https://issues.apache.org/jira/browse/DAEMON-*?jql=project%20%3D%20DAEMON
