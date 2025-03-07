@@ -26,7 +26,7 @@ tox list
 # lint all files
 tox -e lint run
 # run a specific test environment
-tox -e py-ansible2.16-ubuntu20 run
+tox -e py-ansible2.17-ubuntu22 run
 # run all test in parallel
 tox run-parallel
 ```
