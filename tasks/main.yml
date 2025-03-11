@@ -48,9 +48,18 @@
         state: directory
         mode: "0775"
 
-    - name: Download and Extract jsvc Source Code
+    - name: Download jsvc Source Code From Remote Repository
+      ansible.builtin.get_url:
+        url: "{{ jsvc_tar_src }}"
+        dest: "{{ jsvc_temp_dir }}"
+        checksum: sha512:{{ jsvc_tar_hash }}
+        mode: "0664"
+      register: jsvc_tar
+      when: jsvc_tar_src_remote
+
+    - name: Extract jsvc Source Code
       ansible.builtin.unarchive:
-        src: "{{ jsvc_tar_src }}"
+        src: "{{ jsvc_tar.dest if jsvc_tar_src_remote else jsvc_tar_src }}"
         dest: "{{ jsvc_temp_dir }}"
         remote_src: "{{ jsvc_tar_src_remote }}"
         extra_opts:
