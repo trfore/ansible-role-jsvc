@@ -27,14 +27,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distro: [centos9, debian11, ubuntu2204, ubuntu2404]
+        distro: [debian11, ubuntu2204, ubuntu2404]
+        experimental: [false]
         molecule_scenario: ["-s default"]
-        requirements_file: ["requirements/dev-requirements.txt"]
+        include:
+          - distro: centos9
+            experimental: true
+            molecule_scenario: "-s default"
     uses: trfore/ansible-role/.github/workflows/test_ansible.yml@main
     with:
       distro: ${{ matrix.distro }}
+      experimental: ${{ matrix.experimental }}
       molecule_scenario: ${{ matrix.molecule_scenario }}
-      requirements_file: ${{ matrix.requirements_file }}
+      requirements_file: "requirements/dev-requirements.txt"
 
   check:
     if: ${{ always() }}
