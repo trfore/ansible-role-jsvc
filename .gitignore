@@ -12,6 +12,9 @@
 *.tgz
 *.tar.gz*
 
+# include commons-daemon tar files
+!molecule/local-tarfile/files/*
+
 # ansible docs - sphinx local build files
 docs/rst
 docs/.gitignore

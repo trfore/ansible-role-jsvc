@@ -1,5 +1,6 @@
 .ansible-lint export-ignore
 .gitattributes export-ignore
+.github export-ignore
 .gitignore export-ignore
 .markdownlint.yaml export-ignore
 .pre-commit-config.yaml export-ignore
@@ -10,6 +11,5 @@
 CONTRIBUTING.md export-ignore
 jsvc.version export-ignore
 molecule export-ignore
-README.md export-ignore
 requirements export-ignore
 tox.ini export-ignore
