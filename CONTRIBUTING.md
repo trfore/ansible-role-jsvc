@@ -23,12 +23,25 @@ pre-commit run --all-files
 ```sh
 # list environments and test
 tox list
+
 # lint all files
 tox -e lint run
+
 # run a specific test environment
-tox -e py-ansible2.17-ubuntu22 run
+tox -e py-ansible2.17-ubuntu22-default run
+
 # run all test in parallel
 tox run-parallel
+
+# changing the downloaded JSVC version
+JSVC_VERSION='1.4.0' tox -e py-ansible2.17-ubuntu22-default run
+```
+
+### Advance Dev/Testing: Molecule commands within Tox venv
+
+```bash
+tox -e py-ansible2.17-ubuntu22-default run -- test -s default --destroy=never
+tox -e py-ansible2.17-ubuntu22-default run -- destroy
 ```
 
 ## Additional References
