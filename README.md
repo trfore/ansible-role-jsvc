@@ -52,6 +52,7 @@ Available variables are listed below, along with default values (see `defaults/m
 | ----------------------- | ----------------------------- | ----------------------------------------------------------------------------------- | --------- |
 | jsvc_src_version        | `1.4.1`                       | Apache Commons' Daemon latest release                                               | No        |
 | jsvc_tar_src            | URL                           | Apache Commons' Daemon **native** source tar file, URL or relative path             | No        |
+| jsvc_tar_hash           | URL                           | Apache Commons' Daemon **native** source tar hash file                              | No        |
 | jsvc_tar_src_remote     | `true`                        | Boolean, `true` if downloading from URL                                             | No        |
 | jsvc_tar_dir            | `/var/tmp`                    | Temporary directory on the target host for extracting and compiling the source code | No        |
 | jsvc_tar_folder         | Automatic                     | Determined from the `jsvc_tar_src` variable                                         | Automatic |
@@ -97,7 +98,9 @@ None
 
 ## License
 
-MIT
+This Ansible role is MIT.
+
+Apache Commons Daemon (JSVC) is Apache License 2.0, for additional information see: <https://www.apache.org/licenses/>.
 
 ## Author Information
 
@@ -115,9 +118,9 @@ Taylor Fore (<https://github.com/trfore>)
 
 ### Apache Commons Daemon / jsvc
 
-- <https://commons.apache.org/proper/commons-daemon/jsvc.html>
-- <https://dlcdn.apache.org/commons/daemon/source/>
-- <https://github.com/apache/commons-daemon>
+- [Commons-Daemon]
+- [Commons-Daemon Archive]
+- [GitHub: Commons-Daemon]
 - [Apache JIRA: Commons-Daemon Issue Tracker]
 
 [ansible-role-jsvc]: https://github.com/trfore/ansible-role-jsvc
@@ -127,3 +130,6 @@ Taylor Fore (<https://github.com/trfore>)
 [ansible-role-omada-install]: https://github.com/trfore/ansible-role-omada-install
 [trfore.omada_install]: https://galaxy.ansible.com/trfore/omada_install
 [Apache JIRA: Commons-Daemon Issue Tracker]: https://issues.apache.org/jira/browse/DAEMON-*?jql=project%20%3D%20DAEMON
+[Commons-Daemon]: https://commons.apache.org/proper/commons-daemon/jsvc.html
+[Commons-Daemon Archive]: https://archive.apache.org/dist/commons/daemon/
+[GitHub: Commons-Daemon]: https://github.com/apache/commons-daemon
