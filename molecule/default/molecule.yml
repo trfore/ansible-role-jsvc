@@ -20,7 +20,7 @@ provisioner:
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
   env:
-    JSVC_VERSION: ${JSVC_VERSION:-"1.4.1"}
+    JSVC_VERSION: ${JSVC_VERSION:-"1.4.0"}
 verifier:
   name: ansible
 scenario:
