@@ -3,6 +3,8 @@
   hosts: all
   vars:
     jsvc_src_version: "{{ lookup('env', 'JSVC_VERSION') }}"
+    jsvc_tar_src: "./files/commons-daemon-{{ jsvc_src_version }}-native-src.tar.gz"
+    jsvc_tar_src_remote: false
   pre_tasks:
     - name: Update APT cache
       ansible.builtin.apt:

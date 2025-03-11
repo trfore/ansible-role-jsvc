@@ -2,8 +2,8 @@
 - name: Verify
   hosts: all
   gather_facts: false
-  vars_files:
-    - ../../defaults/main.yml
+  vars:
+    jsvc_src_version: "{{ lookup('env', 'JSVC_VERSION') }}"
   tasks:
     - name: Test | Get Binary File Info
       ansible.builtin.stat:
