@@ -64,8 +64,8 @@ OS specific variables are listed below, along with default values (see `vars/mai
 
 | Variable       | Default                        | Description       | Required |
 | -------------- | ------------------------------ | ----------------- | -------- |
-| jsvc_build_jdk | `openjdk-11-jdk-headless`      | Java JDK (Debian) | No       |
-| jsvc_build_jdk | `java-11-openjdk-devel.x86_64` | Java JDK (RHEL)   | No       |
+| jsvc_build_jdk | `openjdk-17-jdk-headless`      | Java JDK (Debian) | No       |
+| jsvc_build_jdk | `java-17-openjdk-devel.x86_64` | Java JDK (RHEL)   | No       |
 
 ## Dependencies
 
