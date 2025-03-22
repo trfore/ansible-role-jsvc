@@ -1,7 +1,7 @@
 # Ansible Role: jsvc
 
-[![CI](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml)
-[![CD](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml)
+[![CI](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml/badge.svg)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/ci.yml)
+[![CD](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml/badge.svg)](https://github.com/trfore/ansible-role-jsvc/actions/workflows/cd.yml)
 
 Compile the Apache Commons Daemon, aka `jsvc`, on RedHat/CentOS and Debian/Ubuntu.
 
@@ -64,8 +64,8 @@ OS specific variables are listed below, along with default values (see `vars/mai
 
 | Variable       | Default                        | Description       | Required |
 | -------------- | ------------------------------ | ----------------- | -------- |
-| jsvc_build_jdk | `openjdk-11-jdk-headless`      | Java JDK (Debian) | No       |
-| jsvc_build_jdk | `java-11-openjdk-devel.x86_64` | Java JDK (RHEL)   | No       |
+| jsvc_build_jdk | `openjdk-17-jdk-headless`      | Java JDK (Debian) | No       |
+| jsvc_build_jdk | `java-17-openjdk-devel.x86_64` | Java JDK (RHEL)   | No       |
 
 ## Dependencies
 
@@ -116,20 +116,23 @@ Taylor Fore (<https://github.com/trfore>)
 
 ## References
 
+- [RHEL: OpenJDK Life Cycle and Support Policy]
+
 ### Apache Commons Daemon / jsvc
 
 - [Commons-Daemon]
 - [Commons-Daemon Archive]
+- [Commons-Daemon Issue Tracker]
 - [GitHub: Commons-Daemon]
-- [Apache JIRA: Commons-Daemon Issue Tracker]
 
 [ansible-role-jsvc]: https://github.com/trfore/ansible-role-jsvc
-[trfore.jsvc]: https://galaxy.ansible.com/trfore/jsvc
 [ansible-role-mongodb-install]: https://github.com/trfore/ansible-role-mongodb-install
-[trfore.mongodb_install]: https://galaxy.ansible.com/trfore/mongodb_install
 [ansible-role-omada-install]: https://github.com/trfore/ansible-role-omada-install
-[trfore.omada_install]: https://galaxy.ansible.com/trfore/omada_install
-[Apache JIRA: Commons-Daemon Issue Tracker]: https://issues.apache.org/jira/browse/DAEMON-*?jql=project%20%3D%20DAEMON
-[Commons-Daemon]: https://commons.apache.org/proper/commons-daemon/jsvc.html
 [Commons-Daemon Archive]: https://archive.apache.org/dist/commons/daemon/
+[Commons-Daemon Issue Tracker]: https://issues.apache.org/jira/browse/DAEMON-*?jql=project%20%3D%20DAEMON
+[Commons-Daemon]: https://commons.apache.org/proper/commons-daemon/jsvc.html
 [GitHub: Commons-Daemon]: https://github.com/apache/commons-daemon
+[RHEL: OpenJDK Life Cycle and Support Policy]: https://access.redhat.com/articles/1299013
+[trfore.jsvc]: https://galaxy.ansible.com/trfore/jsvc
+[trfore.mongodb_install]: https://galaxy.ansible.com/trfore/mongodb_install
+[trfore.omada_install]: https://galaxy.ansible.com/trfore/omada_install
