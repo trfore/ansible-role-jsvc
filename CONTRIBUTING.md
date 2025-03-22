@@ -47,5 +47,6 @@ tox -e py-ansible2.17-ubuntu22-default run -- destroy
 ## Additional References
 
 - [Ansible community guide](https://docs.ansible.com/ansible/devel/community/index.html)
-- [Github Docs: Forking a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository)
 - [Ansible Docs: `ansible-core` support matrix](https://docs.ansible.com/ansible/latest/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix)
+- [Github Docs: Forking a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository)
+- [RHEL: OpenJDK Life Cycle and Support Policy](https://access.redhat.com/articles/1299013)
