@@ -1,5 +1,5 @@
 ---
-jsvc_src_version: "1.4.0"
+jsvc_src_version: "1.4.1"
 jsvc_tar_src: "https://archive.apache.org/dist/commons/daemon/source/commons-daemon-{{ jsvc_src_version }}-native-src.tar.gz"
 jsvc_tar_hash: "https://archive.apache.org/dist/commons/daemon/source/commons-daemon-{{ jsvc_src_version }}-native-src.tar.gz.sha512"
 jsvc_tar_src_remote: true

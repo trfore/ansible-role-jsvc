@@ -50,7 +50,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
 | Variable                | Default                       | Description                                                                         | Required  |
 | ----------------------- | ----------------------------- | ----------------------------------------------------------------------------------- | --------- |
-| jsvc_src_version        | `1.4.0`                       | Apache Commons' Daemon latest release                                               | No        |
+| jsvc_src_version        | `1.4.1`                       | Apache Commons' Daemon latest release                                               | No        |
 | jsvc_tar_src            | URL                           | Apache Commons' Daemon **native** source tar file, URL or relative path             | No        |
 | jsvc_tar_hash           | URL                           | Apache Commons' Daemon **native** source tar hash file                              | No        |
 | jsvc_tar_src_remote     | `true`                        | Boolean, `true` if downloading from URL                                             | No        |
@@ -87,7 +87,7 @@ None
 - hosts: servers
   become: true
   vars:
-    jsvc_tar_src: commons-daemon-1.4.0-native-src.tar.gz
+    jsvc_tar_src: commons-daemon-1.4.1-native-src.tar.gz
     jsvc_tar_src_remote: false
     jsvc_remove_jdk: true
     jsvc_remove_tar_folder: true
@@ -132,7 +132,7 @@ Taylor Fore (<https://github.com/trfore>)
 [Commons-Daemon Issue Tracker]: https://issues.apache.org/jira/browse/DAEMON-*?jql=project%20%3D%20DAEMON
 [Commons-Daemon]: https://commons.apache.org/proper/commons-daemon/jsvc.html
 [GitHub: Commons-Daemon]: https://github.com/apache/commons-daemon
-[RHEL: OpenJDK Life Cycle and Support Policy]: https://access.redhat.com/articles/1299013
+[RHEL: OpenJDK Life Cycle and Support Policy]: https://access.redhat.com/articles/1.4.113
 [trfore.jsvc]: https://galaxy.ansible.com/trfore/jsvc
 [trfore.mongodb_install]: https://galaxy.ansible.com/trfore/mongodb_install
 [trfore.omada_install]: https://galaxy.ansible.com/trfore/omada_install
