@@ -35,6 +35,9 @@ tox run-parallel
 
 # changing the downloaded JSVC version
 JSVC_VERSION='1.4.0' tox -e py-ansible2.17-ubuntu22-default run
+
+# set the tarfile version
+JSVC_VERSION='1.4.1' tox -e py-ansible2.17-ubuntu22-local run
 ```
 
 ### Advance Dev/Testing: Molecule commands within Tox venv
@@ -42,6 +45,12 @@ JSVC_VERSION='1.4.0' tox -e py-ansible2.17-ubuntu22-default run
 ```bash
 tox -e py-ansible2.17-ubuntu22-default run -- test -s default --destroy=never
 tox -e py-ansible2.17-ubuntu22-default run -- destroy
+
+JSVC_VERSION='1.4.1' tox -e py-ansible2.17-debian11-local run -- converge -s local-tarfile
+tox -e py-ansible2.17-ubuntu22-local run -- test -s local-tarfile --destroy=never
+
+# run a group of tests
+JSVC_VERSION='1.4.0' tox -f ansible2.19 run-parallel
 ```
 
 ## Additional References

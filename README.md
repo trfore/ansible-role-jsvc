@@ -34,10 +34,10 @@ roles:
 
 ## Tested Platforms
 
-- `ansible-core` 2.16, 2.17 & 2.18
+- `ansible-core` 2.17, 2.18 & 2.19
 - `python` 3.10 & 3.11
 - CentOS Stream 9
-- Debian 11
+- Debian 11 & 12
 - Ubuntu 22.04 & 24.04
 
 ## Requirements
